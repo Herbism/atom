@@ -3610,9 +3610,8 @@ class TextEditor {
   // whitespace.
   usesSoftTabs () {
     const languageMode = this.buffer.getLanguageMode()
-    const hasIsRowCommented = languageMode.isRowCommented
     for (let bufferRow = 0, end = Math.min(1000, this.buffer.getLastRow()); bufferRow <= end; bufferRow++) {
-      if (hasIsRowCommented && languageMode.isRowCommented(bufferRow)) continue
+      if (languageMode.isRowCommented(bufferRow)) continue
       const line = this.buffer.lineForRow(bufferRow)
       if (line[0] === ' ') return true
       if (line[0] === '\t') return false
